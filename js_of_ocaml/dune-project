@@ -1,0 +1,4 @@
+(lang dune 2.9)
+(name js_of_ocaml_examples)
+(maintainers "Milan Martos <milan.martos@gmail.com>")
+(authors "Milan Martos <milan.martos@gmail.com>")
