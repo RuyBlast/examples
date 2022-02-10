@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>XHR</title>
+    <script defer language="javascript" type="text/javascript">
+      let xhr = new XMLHttpRequest();
+      xhr.onload = function() {
+        let text = this.responseText;
+        console.log(text);
+        let body = document.querySelector("body");
+        let p = document.createElement("p");
+        let textNode = document.createTextNode(text);
+        body.appendChild(p.appendChild(textNode));
+      }
+      xhr.open("GET", "https://api.github.com/zen");
+      xhr.send();
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
