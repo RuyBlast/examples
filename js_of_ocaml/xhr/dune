@@ -1,7 +1,7 @@
 ;(rule
-; (targets indexi.html)
- ;(deps   index.html)
-; (action (copy index.html indexi.html)))
+; (targets xhr.html)  ; to give a purpose to the rule, not elegant
+; (deps   index.html) ; the real target to be copied
+; (action (copy %{deps} %{targets})))
 
 (executable (name xhr)
  (libraries js_of_ocaml)

@@ -1,8 +1,6 @@
 open Js_of_ocaml
 
-let xhr = XmlHttpRequest.create ()
-
-let bind_callback_str_opt (xhr:XmlHttpRequest.xmlHttpRequest Js.t) callback =
+let bind_callback_str_opt xhr callback =
   xhr##.onreadystatechange :=
     Js.wrap_callback
       (fun _ ->
@@ -17,6 +15,7 @@ let bind_callback_str_opt (xhr:XmlHttpRequest.xmlHttpRequest Js.t) callback =
       )
 
 let () =
+  let xhr = XmlHttpRequest.create () in
   bind_callback_str_opt xhr
     (function
       | None -> ()
@@ -24,11 +23,8 @@ let () =
         let text_node = Dom_html.document##createTextNode (Js.string s) in
         let p = Dom_html.document##createElement (Js.string "p") in
         let p = p##appendChild (text_node :> Dom.node Js.t) in
-        let body_opt = Dom_html.document##querySelector (Js.string "body")
-                       |> Js.Opt.to_option in
-        match body_opt with
-        | None -> ()
-        | Some body -> ignore (body##appendChild (p))
+        let body_jsopt = Dom_html.document##querySelector (Js.string "body") in
+        Js.Opt.iter body_jsopt (fun body -> ignore (body##appendChild (p)))
     );
   xhr##_open (Js.string "GET") (Js.string "https://api.github.com/zen") Js._true;
   xhr##send (Js.null)
