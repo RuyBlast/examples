@@ -18,8 +18,9 @@ let () =
   let xhr = XmlHttpRequest.create () in
   bind_callback_str_opt xhr
     (function
-      | None -> ()
+      | None -> Firebug.console##log (Js.string "None!"); ()
       | Some s ->
+        Firebug.console##log (Js.string s);
         let text_node = Dom_html.document##createTextNode (Js.string s) in
         let p = Dom_html.document##createElement (Js.string "p") in
         let p = p##appendChild (text_node :> Dom.node Js.t) in

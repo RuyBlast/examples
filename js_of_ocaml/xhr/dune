@@ -8,3 +8,8 @@
  (preprocess
   (pps js_of_ocaml-ppx))
  (modes js))
+
+(rule
+ (targets standalone.html)
+ (deps standalone_gen.sh xhr.bc.js)
+ (action (run sh standalone_gen.sh)))
