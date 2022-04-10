@@ -1,9 +1,9 @@
 # Examples
 Variety of small code examples. Use as reminders.
 
-If a folder contains an index.html file, run (with python 2.xx) :
+If a folder contains an index.html file, run:
 ```
-python -m SimpleHTTPServer
+python3 -m http.server
 ```
 and then navigate to
 http://localhost:8000/
