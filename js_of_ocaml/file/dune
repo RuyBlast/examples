@@ -1,0 +1,6 @@
+(executable (name file)
+ (libraries js_of_ocaml)
+ (modules file)
+ (preprocess
+  (pps js_of_ocaml-ppx))
+ (modes js))
